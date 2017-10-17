@@ -1,0 +1,53 @@
+/******************************************\
+|**********         RESET        **********|
+\******************************************/
+
+*, *:after, *:before { box-sizing: border-box }
+html, body { margin: 0; padding: 0; overflow-x: hidden }
+
+/* Nifty reset makes calculating REMs much easier */
+html { font-size: 10px }
+
+/******************************************\
+|**********      MISC STYLES     **********|
+\******************************************/
+
+/* Note there is no `html` or `body` background color to fake a
+ * footer fill. Inspect it, the footer *actually* fills the page
+ */
+body { color: var(--grey); font-size: 1.8rem; font-family: var(--font--main) }
+
+header,
+footer {
+  background: #333;
+  color: #fff;
+  display: flex;
+  align-items: center;
+}
+
+footer { min-height: 10rem; }
+
+/******************************************\
+|*************    The Magic   *************|
+\******************************************/
+
+body {
+  /* The requirement */
+  display: grid;
+  /* Set the page to be one column */
+  grid-template-columns: 100%;
+  /* 
+   * Set a min height of 100vh to make the `1fr` unit 
+   * fill the bottom of the vieport or 'viewport height'
+   */
+   min-height: 100vh;
+  /* There are three elements in the `body`. 
+   * A `header`, `main`, and `footer`.  
+   * The following grid template sets the header at 60px
+   * the main to be as tall as necessary, and the footer to
+   * fill the remaining `1fr` or 'fraction of space available'.
+   * This makes the footer fill the remaining portion of the page
+   * and avoids dealing with background color hacks.
+   */
+  grid-template-rows: 6rem auto 1fr;
+}
